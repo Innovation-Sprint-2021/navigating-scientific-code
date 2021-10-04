@@ -8,7 +8,7 @@ All developement is happening online - you don't need to install anything on you
 
 | Link  |   Description  |
 |-------|----------------|
-| [![Voilà](https://img.shields.io/badge/Lab-collaborate-yellowgreen.svg)][RTC] | 👷 Join the collaborative editing now (please edit the username in the URL) |
+| [![RTC](https://img.shields.io/badge/Lab-collaborate-yellowgreen.svg)][RTC] | 👷 Join the collaborative editing now (please edit the username in the URL) |
 | [![Voilà](https://img.shields.io/badge/Voil%C3%A0-preview-critical.svg)][voila] | 👀 Render the most recent state of the app |
 | [![Binder](https://img.shields.io/badge/Binder-launch-blue.svg)][New binder] | 🚀 Start a custom session, independent of the current collaboration |
 
