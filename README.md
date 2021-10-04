@@ -15,4 +15,4 @@ All developement is happening online - you don't need to install anything on you
 [Voila]: https://mybinder.org/v2/gh/Innovation-Sprint-2021/navigating-scientific-code/HEAD?urlpath=voila/render/Proof_of_concept.ipynb
 [New binder]: https://mybinder.org/v2/gh/Innovation-Sprint-2021/navigating-scientific-code/HEAD?urlpath=lab/tree/Proof_of_concept.ipynb
 <!-- the token has a limited lifetime , needs updating after starting a new session-->
-[RTC]: https://hub.gke2.mybinder.org/user/innovation-spri-scientific-code-xgzhgg89/lab/tree/Proof_of_concept.ipynb?token=aJzYw957SWKblK2spC3iAg
+[RTC]: https://hub.gke2.mybinder.org/user/innovation-spri-scientific-code-xgzhgg89/lab/tree/Proof_of_concept.ipynb?token=aJzYw957SWKblK2spC3iAg&username=yourusername
