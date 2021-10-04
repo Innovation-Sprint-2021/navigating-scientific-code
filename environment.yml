@@ -1,0 +1,29 @@
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9.7
+  - r-base=4.1.1
+  - rpy2=3.4.5
+  - jupyterlab=3.1.14
+  - jupyterlab_server=2.8.2
+  - jupyterlab-language-pack-pl-pl
+  - jupyterlab-language-pack-fr-fr
+  - jupyterlab-link-share
+  # dashboard
+  - voila
+  - voila-gridstack
+  - ipywidgets
+  # notebook handling
+  - jupytext
+  - nbconvert
+  # collaboration tools
+  - jupyterlab-git
+  - jupyterlab-spellchecker
+  - jupyterlab-lsp
+  - jupyter-lsp-python
+  # graphing with graphviz
+  - graphviz
+  # Python dependencies
+  - pip
+  - pip:
+    - nbpipeline
