@@ -2,8 +2,6 @@ channels:
   - conda-forge
 dependencies:
   - python=3.9.7
-  - r-base=3.6.3
-  - rpy2=3.4.5
   - jupyterlab=3.1.14
   - jupyterlab_server=2.8.2
   - jupyterlab-language-pack-pl-pl
