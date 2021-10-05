@@ -126,6 +126,7 @@ def augment_from_elife(article: dict, manifest: dict,
                 source_image = utils.get_image(source_file)
                 if source_image is None:
                     continue
+
                 print(f'Comparing {source_file} to images in the repo')
                 # Compare to all known images
                 for repo_file, metadata in manifest.items():
@@ -144,6 +145,9 @@ def augment_from_elife(article: dict, manifest: dict,
                     repo_image = utils.get_image(os.path.join(repo_dir, repo_file))
                     if repo_image is None:
                         continue
+                    # Assume that images with different modes (e.g. RGB vs. RGBA) are not the same
+                    if repo_image.mode != source_image.mode:
+                        continue
                     if repo_image.size != source_image.size:
                         repo_aspect = repo_image.size[0] / repo_image.size[1]
                         source_aspect = source_image.size[0] / source_image.size[1]
@@ -160,7 +164,7 @@ def augment_from_elife(article: dict, manifest: dict,
                         scaled_repo_image = repo_image
                         scaled_source_image = source_image
 
-                    # Compare with structural similary
+                    # Compare with structural similarity
                     similarity = ssim(np.asarray(scaled_repo_image),
                                       np.asarray(scaled_source_image),
                                       multichannel=True)
