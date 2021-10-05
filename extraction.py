@@ -131,6 +131,15 @@ def augment_from_elife(article: dict, manifest: dict,
                 for repo_file, metadata in manifest.items():
                     if (metadata['type'] is None
                             or not (metadata['type'] == 'application/pdf' or metadata['type'].startswith('image/'))):
+                        match = re.match(r'^Figure ([1-9][0-9]*)$', image_block['label'])
+                        if match:
+                            # Matching file name?
+                            figure_no = match.group(1)
+                            if re.match(r'[Ff]ig(ure)?[ _]?' + figure_no + r'\..*', os.path.basename(repo_file)):
+                                print(f"Found a match via file name {repo_file} == {image_block['label']}!", repo_file)
+                                metadata['references'].append({'origin': f'elife/{id}',
+                                                               'context': image_block['title'],
+                                                               'label': image_block['label']})
                         continue
                     repo_image = utils.get_image(os.path.join(repo_dir, repo_file))
                     if repo_image is None:
