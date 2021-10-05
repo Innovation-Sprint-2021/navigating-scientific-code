@@ -23,5 +23,14 @@ dependencies:
   - graphviz
   # Python dependencies
   - pip
+  # image processing
+  - scikit-image
+  - pdf2image
+  - pillow
+  # text processing
+  - markdown
+  - lxml
+  # general utility packages
+  - requests
   - pip:
     - git+https://github.com/krassowski/nbpipeline
