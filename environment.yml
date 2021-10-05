@@ -24,4 +24,4 @@ dependencies:
   # Python dependencies
   - pip
   - pip:
-    - nbpipeline
+    - git+https://github.com/krassowski/nbpipeline
