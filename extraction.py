@@ -233,9 +233,8 @@ def augment_from_readmes(manifest: dict, repo_dir: str):
     for readme in readmes:
         readme_text = open(os.path.join(repo_dir, readme)).read()
         for filename, metadata in manifest.items():
-            if not '.' in filename or filename in readmes:
+            if '.' not in filename or filename in readmes:
                 continue
-            print(filename, readme)
             if filename in readme_text:
                 if readme.endswith('.md'):
                     html_text = markdown.markdown(readme_text)
