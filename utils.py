@@ -8,7 +8,7 @@ from PIL import Image
 _TAG_RE = re.compile(r'<[^>]+>')
 
 
-def get_image(filename : str) -> Optional[Image.Image]:
+def _get_image(filename: str) -> Optional[Image.Image]:
     """
     Convenience function to get an `Image` object for a file name.
     Parameters
@@ -34,6 +34,12 @@ def get_image(filename : str) -> Optional[Image.Image]:
         except Exception:  # FIXME: more specific
             return None
     return image
+
+_get_image_cache = {}
+def get_image(filename: str) -> Optional[Image.Image]:
+    if filename not in _get_image_cache:
+        _get_image_cache[filename] = _get_image(filename)
+    return _get_image_cache[filename]
 
 
 def remove_tags(html_text : str) -> str:
