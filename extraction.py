@@ -129,8 +129,6 @@ def augment_from_elife(article: dict, manifest: dict,
                 print(f'Comparing {source_file} to images in the repo')
                 # Compare to all known images
                 for repo_file, metadata in manifest.items():
-                    if not 'notebooks/figures' in repo_file:
-                        continue
                     if (metadata['type'] is None
                             or not (metadata['type'] == 'application/pdf' or metadata['type'].startswith('image/'))):
                         continue
