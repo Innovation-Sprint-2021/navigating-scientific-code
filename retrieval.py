@@ -1,7 +1,9 @@
+from typing import Dict
+import requests
 from subprocess import run
 
 
-def find_repository_urls(user_input: str) -> dict[str, float]:
+def find_repository_urls(user_input: str) -> Dict[str, float]:
     """Given user input, resolve to proper git URL.
 
     For expected URL https://github.com/krassowski/multi-omics-state-of-the-field,
@@ -41,3 +43,33 @@ def fetch_repository(address: str, temp_dir: str):
         # TODO: uncomment (for now good ok debugging)
         # capture_output=True
     )
+
+
+def repo_url(user: str, repo: str) -> str:
+    """Return HTTPS url for a github repository"""
+    return f"https://github.com/{user}/{repo}"
+
+
+def fetch_article(source: str, id: str) -> dict:
+    """
+    Fetches an article from an online repository.
+
+    Parameters
+    ----------
+    source : str
+        The article source, only "elife" supported at the moment.
+    id : str
+        An id with a meaning for the source.
+
+    Returns
+    -------
+    article : dict
+        A dictionary representation of the article
+        (TODO: The format will have to be normalized across sources)
+    """
+    if source != 'elife':
+        raise NotImplementedError("Only the 'elife' source is supported.")
+    paper_url = f"https://api.elifesciences.org/articles/{id}"
+    response = requests.get(paper_url)
+    # TODO: Handle errors
+    return response.json()['body']
