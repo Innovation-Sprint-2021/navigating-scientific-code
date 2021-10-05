@@ -27,7 +27,7 @@ print('Adding information from the r files to the manifest')
 extraction.augment_from_r(manifest, repo_dir)
 
 print('Adding information from the article to the manifest')
-extraction.augment_from_elife(article, manifest, image_dir, repo_dir,
+extraction.augment_from_elife(article['body'], manifest, image_dir, repo_dir,
                               id=ARTICLE_ID)
 
 print('Final manifest:')

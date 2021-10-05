@@ -72,4 +72,4 @@ def fetch_article(source: str, id: str) -> dict:
     paper_url = f"https://api.elifesciences.org/articles/{id}"
     response = requests.get(paper_url)
     # TODO: Handle errors
-    return response.json()['body']
+    return response.json()

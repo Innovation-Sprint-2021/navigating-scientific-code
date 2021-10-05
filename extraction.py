@@ -12,6 +12,22 @@ import markdown
 import utils
 
 
+def _find_github_repo(blocks: list) -> (str, str):
+    # TODO: assumes only a single repository in the text
+    for block in blocks:
+        if block['type'] == 'paragraph':
+            text = utils.remove_tags(block['text'])
+            # TODO: Only matches main repo, not branches, etc.
+            match = re.search(r'https://github.com/([a-zA-Z0-9-]+)/([a-zA-Z0-9_\-]+)\b', text)
+            if match:
+                return match.group(1), match.group(2)
+        elif block['type'] == 'section':
+            result = _find_github_repo(block['content'])
+            if result:
+                return result
+        else:  # figure, etc.
+            continue
+
 def find_github_repo(article: dict) -> (str, str):
     """
     Recusively go through the structured article representation to find
@@ -27,20 +43,10 @@ def find_github_repo(article: dict) -> (str, str):
     user, repo
         The user (or organization) name and the repository name.
     """
-    # TODO: assumes only a single repository in the text
-    for block in article:
-        if block['type'] == 'paragraph':
-            text = utils.remove_tags(block['text'])
-            # TODO: Only matches main repo, not branches, etc.
-            match = re.search(r'https://github.com/([a-zA-Z0-9-]+)/([a-zA-Z0-9_\-]+)\b', text)
-            if match:
-                return match.group(1), match.group(2)
-        elif block['type'] == 'section':
-            result = find_github_repo(block['content'])
-            if result:
-                return result
-        else:  # figure, etc.
-            continue
+    # The github repo might also be in the data availability statement
+    return _find_github_repo(article['body'] +
+                             article['abstract']['content'] +
+                             article.get('dataSets', {}).get('availability', []))
 
 
 def create_manifest(repo_dir: str) -> dict:
